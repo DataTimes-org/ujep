@@ -102,6 +102,7 @@ a.tile.past:hover { border-color: var(--green); }
 a.tile.now:hover { border-color: var(--blue); }
 .tile.off { background: var(--paper); border-style: dashed; border-color: var(--line-strong); }
 .tile.off .n { color: var(--line-strong); }
+.tile.off h3 { color: #7889be; }   /* brandNavy.5: ještě bez odkazu */
 .tile.off p { color: var(--muted); }
 .badge { display: inline-block; font: 600 .72rem var(--sans); padding: .1rem .5rem; border-radius: 3px; }
 .badge.done { background: var(--green-tint); color: var(--green-ink); }
