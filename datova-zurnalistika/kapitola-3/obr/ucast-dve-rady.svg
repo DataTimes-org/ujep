@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="640" height="400" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Sans, Segoe UI, Arial, sans-serif" viewBox="0 0 320 200">
+      <line x1="40" y1="170" x2="310" y2="170" stroke="#d4d4c8"/>
+      <text x="34" y="174" text-anchor="end" font-size="10" fill="#6b675f">0</text>
+      <text x="34" y="34" text-anchor="end" font-size="10" fill="#6b675f">70 %</text>
+      <line x1="40" y1="30" x2="310" y2="30" stroke="#eeeae2"/>
+      <polyline fill="none" stroke="#4a51ab" stroke-width="2.5" points="120,46 240,38"/>
+      <polyline fill="none" stroke="#0e839e" stroke-width="2.5" points="60,94 180,90 300,86"/>
+      <g fill="#4a51ab"><circle cx="120" cy="46" r="4"/><circle cx="240" cy="38" r="4"/></g>
+      <g fill="#0e839e"><circle cx="60" cy="94" r="4"/><circle cx="180" cy="90" r="4"/><circle cx="300" cy="86" r="4"/></g>
+      <text x="232" y="28" font-size="11" font-weight="600" fill="#4a51ab">sněmovní</text>
+      <text x="236" y="108" font-size="11" font-weight="600" fill="#0e839e">obecní</text>
+      <g font-size="10" fill="#6b675f" text-anchor="middle"><text x="60" y="186">2018</text><text x="120" y="186">2021</text><text x="180" y="186">2022</text><text x="240" y="186">2025</text><text x="300" y="186">2026</text></g>
+    </svg>

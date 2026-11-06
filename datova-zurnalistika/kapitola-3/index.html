@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Od zjištění k obrazu · Kapitola 3</title>
+<link rel="icon" href="../../assets/datatimes-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+<header class="top"><div class="wrap">
+  <a class="brand" href="../../index.html"><img class="ujep" src="../../assets/ujep-logo.svg" alt="UJEP"><span class="x">×</span><img src="../../assets/datatimes-logo.png" alt="">DataTimes</a>
+  <nav>
+    <a href="../index.html">Osnova</a>
+    <a href="../kapitola-1/index.html">Kapitola 1</a>
+    <a href="../kapitola-2/index.html">Kapitola 2</a>
+    <a href="index.html" aria-current="page">Kapitola 3</a>
+  </nav>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <p class="crumbs"><a href="../../index.html">Předměty</a> › <a href="../index.html">Datová žurnalistika</a> › Kapitola 3</p>
+  <p class="lbl">Kapitola 3 · vizualizace a pravdivé zjednodušování</p>
+  <h1>Od zjištění k&nbsp;obrazu</h1>
+  <p>Minule jste sesbírali účast ve svém okrsku v&nbsp;čase a&nbsp;každé číslo ověřili proti ČSÚ. Teď z&nbsp;ověřených čísel uděláte obraz. Ne jeden, ale dva: dvě skici stejného zjištění, ze kterých vyberete tu, které čtenář porozumí rychleji a&nbsp;správněji.</p>
+</div></section>
+
+<main class="wrap">
+
+<div class="key">
+  <span class="tag">Co si odnesete</span>
+  <ul>
+    <li>Než otevřete nástroj, napíšete hlavní sdělení jednou větou. Graf pak tu větu dokazuje.</li>
+    <li>Podle otázky vyberete typ grafu: srovnání, vývoj, podíl, rozdělení, vztah, nebo místo na mapě.</li>
+    <li>Víte, co smíte při zjednodušování vypustit a&nbsp;co ne: osa, období, výjimky, nejistota.</li>
+    <li>Graf popíšete tak, aby obstál sám, vytržený z&nbsp;článku: titulek, jednotky, přímé popisky, zdroj.</li>
+    <li>Nakreslíte dvě varianty stejného zjištění a&nbsp;zdůvodníte, proč jste vybrali jednu z&nbsp;nich.</li>
+  </ul>
+</div>
+
+<nav class="toc" aria-label="Obsah kapitoly">
+  <span class="lbl">Obsah · asi 45 minut čtení + práce na datech</span>
+  <ol>
+    <li><a href="#veta">Nejdřív věta, potom graf</a><span class="t">8 min</span></li>
+    <li><a href="#typ">Jaký graf pro jakou otázku</a><span class="t">12 min</span></li>
+    <li><a href="#pravda">Zjednodušit, a&nbsp;nezalhat</a><span class="t">12 min</span></li>
+    <li><a href="#popisky">Graf, který obstojí sám</a><span class="t">6 min</span></li>
+    <li><a href="#skici">Úkol: Dvě skici stejného zjištění</a><span class="t">7 min + práce</span></li>
+    <li><a href="#ukoly">Úkoly do příště</a></li>
+  </ol>
+</nav>
+
+<!-- ============ 1 ============ -->
+<h2 id="veta">1. Nejdřív věta, potom graf</h2>
+
+<p>Nejčastější chyba nevzniká v&nbsp;nástroji, ale před ním. Kdo otevře Datawrapper nebo Google Sheets s&nbsp;tabulkou a&nbsp;bez věty, kliká tak dlouho, až mu vyjde „nějaký graf“. Ten pak ukazuje všechno, a&nbsp;proto nic.</p>
+<p>Začněte proto větou. Vezměte jedno ze zjištění, která jste minule ověřili, a&nbsp;napište ho tak, jak by stálo v&nbsp;titulku:</p>
+<ul>
+  <li><strong>Slabě:</strong> „Volební účast v&nbsp;okrsku 5 v&nbsp;letech 2006–2026“. To je popis tabulky, ne zjištění.</li>
+  <li><strong>Silně:</strong> „K&nbsp;obecním volbám chodí v&nbsp;našem okrsku dlouhodobě o&nbsp;čtvrtinu lidí méně než ke sněmovním“. Tahle věta říká, co má čtenář v&nbsp;grafu vidět.</li>
+</ul>
+<p>Z&nbsp;věty plyne i&nbsp;to, co do grafu patří. Když tvrdíte „o&nbsp;čtvrtinu méně než ke sněmovním“, musí být v&nbsp;grafu vidět obojí, obecní i&nbsp;sněmovní volby. Když tvrdíte „nejnižší v&nbsp;okolí“, potřebujete okolí. Graf, který tvrzení nedokládá, je ilustrace, ne důkaz.</p>
+
+<div class="box">
+  <p><strong>Jedno zjištění, jeden graf.</strong> Když máte tři zjištění, máte tři grafy, nebo jeden graf ve třech krocích (o&nbsp;tom víc v&nbsp;části 3). Nezkoušejte je nacpat do jednoho obrázku.</p>
+</div>
+
+<p>Kolik grafů je vůbec potřeba? Někdy žádný. Pokud máte dvě čísla, stačí věta: „Účast vzrostla ze 46,07 na 48,00 %.“ Pokud čtenář potřebuje najít přesnou hodnotu pro svou obec, poslouží líp tabulka s&nbsp;vyhledáváním. Graf se vyplatí, když má čtenář vidět <strong>vztah</strong>: co je víc, co roste, co se odchyluje.</p>
+
+<section class="quiz" aria-labelledby="z1">
+  <span class="lbl">Zastávka 1 · tři otázky</span>
+  <h3 id="z1">Máte větu?</h3>
+  <fieldset class="qq" data-answer="2">
+    <legend>Který titulek grafu je zjištění, a&nbsp;ne popis tabulky?</legend>
+    <button>Volební účast v&nbsp;obci Jirkov 2006–2026</button>
+    <button>Graf účasti</button>
+    <button>V&nbsp;Jirkově přišla k&nbsp;obecním volbám jen čtvrtina voličů, nejméně z&nbsp;větších měst</button>
+    <p class="why">Titulek-zjištění říká, co má čtenář v&nbsp;grafu vidět. <a href="#veta">Nejdřív věta</a>.</p>
+  </fieldset>
+  <fieldset class="qq" data-answer="1">
+    <legend>Vaše věta zní: „Ženy jsou v&nbsp;zastupitelstvu méně často než na kandidátkách.“ Co musí graf ukázat?</legend>
+    <button>Jen podíl žen mezi zvolenými</button>
+    <button>Podíl žen na kandidátkách i&nbsp;mezi zvolenými, vedle sebe</button>
+    <button>Počet všech zastupitelů v&nbsp;obci</button>
+    <p class="why">Tvrdíte srovnání, takže v&nbsp;grafu musí být obě strany srovnání. <a href="#veta">Zpět</a>.</p>
+  </fieldset>
+  <fieldset class="qq" data-answer="0">
+    <legend>Máte dvě čísla: účast 46,07 % v&nbsp;roce 2022 a&nbsp;48,00 % v&nbsp;roce 2026. Co uděláte?</legend>
+    <button>Napíšu je do věty. Na dvě čísla graf potřeba není.</button>
+    <button>Udělám koláčový graf</button>
+    <button>Udělám 3D sloupcový graf, aby byl rozdíl vidět</button>
+    <p class="why">Graf se vyplatí, když má čtenář vidět vztah mezi více hodnotami. <a href="#veta">Zpět</a>.</p>
+  </fieldset>
+  <p class="score" aria-live="polite"></p>
+</section>
+
+<!-- ============ 2 ============ -->
+<h2 id="typ">2. Jaký graf pro jakou otázku</h2>
+
+<p>Typ grafu se nevybírá podle toho, co vypadá hezky, ani podle toho, co nástroj nabídne jako první. Vybírá se podle <strong>otázky</strong>, na kterou má graf odpovědět. Otázek je málo, a&nbsp;tak je i&nbsp;málo základních typů. Rozklikněte si, která otázka je vaše:</p>
+
+<details>
+  <summary>Co je víc a&nbsp;co méně? (srovnání)</summary>
+  <p><strong>Pruhový graf</strong> (vodorovné pruhy), u&nbsp;několika málo kategorií i&nbsp;sloupcový. Pruhy seřaďte od největšího, ne podle abecedy. Dlouhé názvy (obcí, kandidátek) se do pruhového grafu vejdou, do sloupcového ne. Příklad: podíl hlasů kandidátek ve vaší obci.</p>
+</details>
+<details>
+  <summary>Jak se to vyvíjelo? (vývoj v&nbsp;čase)</summary>
+  <p><strong>Spojnicový graf</strong>, u&nbsp;několika málo let i&nbsp;sloupce. Čas běží zleva doprava a&nbsp;roky mají na ose skutečné rozestupy: mezi roky 2018 a&nbsp;2022 je stejná mezera jako mezi 2022 a&nbsp;2026. Příklad: účast ve vašem okrsku v&nbsp;obecních volbách. Pozor na nesrovnatelné řady, o&nbsp;tom níž.</p>
+</details>
+<details>
+  <summary>Z&nbsp;čeho se celek skládá? (podíl)</summary>
+  <p><strong>Skládaný pruh do 100 %</strong>, u&nbsp;dvou až tří částí i&nbsp;koláč. Koláč s&nbsp;osmi výsečemi nepřečte nikdo, oko neumí porovnávat úhly. Když chcete podíly porovnat mezi roky nebo obcemi, dejte vedle sebe několik skládaných pruhů. Příklad: ženy a&nbsp;muži v&nbsp;zastupitelstvu po jednotlivých volbách.</p>
+</details>
+<details>
+  <summary>Jak jsou hodnoty rozložené? (rozdělení)</summary>
+  <p><strong>Histogram</strong> nebo <strong>bodový pás</strong> (každá obec jedna tečka na ose). Ukáže, jestli je vaše obec typická, nebo leží na okraji. Příklad: účast ve všech obcích okresu a&nbsp;vaše obec zvýrazněná.</p>
+</details>
+<details>
+  <summary>Souvisí jedno s&nbsp;druhým? (vztah)</summary>
+  <p><strong>Bodový graf</strong>: jedna osa jedna veličina, druhá osa druhá veličina, každá obec jedna tečka. Příklad: podíl lidí s&nbsp;exekucí a&nbsp;volební účast v&nbsp;obcích. A&nbsp;pamatujte z&nbsp;<a href="../kapitola-1/index.html#souvislosti">kapitoly 1</a>: korelace není kauzalita.</p>
+</details>
+<details>
+  <summary>Kde to je? (místo)</summary>
+  <p><strong>Mapa</strong>, ale jen když na místě opravdu záleží. Mapa přeceňuje velká a&nbsp;řídce osídlená území: rozlehlá obec s&nbsp;300 voliči zabere víc barvy než město se 30 000 voliči. Když jde o&nbsp;srovnání, ne o&nbsp;polohu, bývá pruhový graf čitelnější.</p>
+</details>
+
+<h3>Váš úkol z&nbsp;minula: účast v&nbsp;čase</h3>
+<p>Řada, kterou jste minule sestavili, má past. Obsahuje <strong>různé druhy voleb</strong>: obecní, sněmovní, krajské, evropské. Když všechna čísla spojíte jednou čarou podle roku, vznikne pila. Vypadá to, že účast skáče nahoru a&nbsp;dolů, přitom jen střídáte volby, ke kterým chodí hodně lidí, s&nbsp;volbami, ke kterým jich chodí málo.</p>
+
+<div class="figs">
+  <figure>
+    <img src="obr/ucast-pila.svg" alt="Špatně: všechny volby spojené jednou čarou vytvoří pilu" width="640" height="400">
+    <figcaption><strong>Takhle ne.</strong> Jedna čára přes všechny volby vypadá jako dramatický výkyv.</figcaption>
+  </figure>
+  <figure>
+    <img src="obr/ucast-dve-rady.svg" alt="Lépe: obecní a sněmovní volby jako dvě samostatné řady" width="640" height="400">
+    <figcaption><strong>Lépe.</strong> Každý druh voleb má svou řadu. Je vidět stabilní rozdíl i&nbsp;mírný růst.</figcaption>
+  </figure>
+</div>
+<p class="sub">Vymyšlený okrsek, čísla jsou jen pro ukázku. Popisky jsou přímo u&nbsp;čar, legenda není potřeba.</p>
+
+<p>Řešení má několik podob: dvě čáry (obecní a&nbsp;sněmovní), body barevně podle druhu voleb bez spojnic, nebo dva malé grafy pod sebou se stejnou osou. Kterou zvolíte, záleží na vaší větě. Právě to je materiál pro dvě skici v&nbsp;<a href="#skici">části 5</a>.</p>
+
+<div class="deep">
+  <span class="tag">Čtěte</span>
+  <p><a href="https://www.mahdalova-skop.cz/clanek/volby-cr-2026-10-16-ucast-2022-2026">Účast v&nbsp;komunálních volbách stoupla na 48 %</a> (DataTimes, 16. 10.). Všimněte si, kde jsme zvolili mapu, kde graf a&nbsp;kde stačila věta s&nbsp;číslem.</p>
+</div>
+
+<section class="quiz" aria-labelledby="z2">
+  <span class="lbl">Zastávka 2 · tři otázky</span>
+  <h3 id="z2">Který graf?</h3>
+  <fieldset class="qq" data-answer="1">
+    <legend>Chcete ukázat podíl hlasů dvanácti kandidátek v&nbsp;Ústí nad Labem. Co zvolíte?</legend>
+    <button>Koláč s&nbsp;dvanácti výsečemi</button>
+    <button>Pruhový graf seřazený od největšího podílu</button>
+    <button>Spojnicový graf</button>
+    <p class="why">Srovnání mnoha kategorií s&nbsp;dlouhými názvy: pruhy, seřazené. Koláč nad tři výseče oko neporovná. <a href="#typ">Jaký graf</a>.</p>
+  </fieldset>
+  <fieldset class="qq" data-answer="2">
+    <legend>Vaše řada obsahuje účast v&nbsp;obecních i&nbsp;sněmovních volbách. Co je chyba?</legend>
+    <button>Dát každému druhu voleb jinou barvu</button>
+    <button>Udělat dva malé grafy pod sebou se stejnou osou</button>
+    <button>Spojit všechna čísla jednou čarou podle roku</button>
+    <p class="why">Jedna čára přes různé volby vyrobí pilu, která nic neříká o&nbsp;vývoji. <a href="#typ">Účast v&nbsp;čase</a>.</p>
+  </fieldset>
+  <fieldset class="qq" data-answer="all">
+    <legend>Kdy dává mapa smysl? (Zkuste si nejdřív odpovědět sami.)</legend>
+    <button>Když je zjištění o&nbsp;poloze: „na severu“, „podél hranic“</button>
+    <button>Když čtenář chce najít svou obec</button>
+    <button>Když si dáte pozor, že velká území s&nbsp;málo lidmi na mapě přečnívají</button>
+    <div class="why">Správně jsou všechny tři. Mapa je dobrá na polohu a&nbsp;na hledání vlastní obce, jen musíte počítat s&nbsp;tím, že plocha není počet lidí. Když jde čistě o&nbsp;srovnání, bývá čitelnější pruhový graf. <a href="#typ">Zpět</a>.</div>
+  </fieldset>
+  <p class="score" aria-live="polite"></p>
+</section>
+
+<!-- ============ 3 ============ -->
+<h2 id="pravda">3. Zjednodušit, a&nbsp;nezalhat</h2>
+
+<p>Každý graf je zjednodušení. Vynecháváte roky, kategorie, obce, desetinná místa. To je v&nbsp;pořádku a&nbsp;je to vaše práce: čtenář nepotřebuje celou tabulku ČSÚ. Hranice vede jinde. <strong>Zjednodušení nesmí změnit, co z&nbsp;grafu čtenář vyvodí.</strong> Kdyby viděl celá data, musel by dojít ke stejnému závěru.</p>
+
+<h3>Co smíte vypustit</h3>
+<ul>
+  <li>kategorie, které k&nbsp;větě nic nepřidají (malé kandidátky lze sloučit do „ostatní“, když to v&nbsp;grafu napíšete),</li>
+  <li>desetinná místa, která čtenář nepotřebuje (48,0 % místo 48,0012 %),</li>
+  <li>mřížku, rámečky, stíny, 3D efekty a&nbsp;dekorace,</li>
+  <li>legendu, když popíšete čáry a&nbsp;pruhy přímo.</li>
+</ul>
+
+<h3>Co vypustit nesmíte</h3>
+<ul>
+  <li><strong>Nulu na ose u&nbsp;sloupců a&nbsp;pruhů.</strong> Délka sloupce je hodnota. Když osa začíná na 45 %, je sloupec se 48 % trojnásobně delší než sloupec se 46 %, i&nbsp;když je rozdíl dva body. U&nbsp;spojnicového grafu smí osa začínat jinde než na nule, ale čtenář to musí vidět.</li>
+  <li><strong>Období, které mění závěr.</strong> Kdo ukáže jen roky, kdy účast rostla, tvrdí „roste“, i&nbsp;když dlouhodobě klesá. Začátek a&nbsp;konec řady volte podle dat, ne podle toho, co chcete dokázat.</li>
+  <li><strong>Výjimky.</strong> Když jedna obec nebo jeden okrsek vybočuje, patří do grafu, nebo aspoň do poznámky. Často je to právě ta zpráva.</li>
+  <li><strong>Nejistotu.</strong> U&nbsp;malých obcí skáčou procenta: v&nbsp;sedmičlenném zastupitelstvu je jedna žena 14 procentních bodů. Napište počty, nebo to poznamenejte.</li>
+</ul>
+
+<div class="figs">
+  <figure>
+    <img src="obr/osa-od-nuly.svg" alt="Osa od nuly: sloupce 46,07 a 48,00 procenta vypadají skoro stejně" width="640" height="400">
+    <figcaption><strong>Osa od nuly.</strong> Mírný růst o&nbsp;necelé dva body.</figcaption>
+  </figure>
+  <figure>
+    <img src="obr/osa-useknuta.svg" alt="Osa od 45 procent: stejná čísla vypadají jako trojnásobný nárůst" width="640" height="400">
+    <figcaption><strong>Useknutá osa.</strong> Stejná dvě čísla, ale sloupec vypadá skoro třikrát delší.</figcaption>
+  </figure>
+</div>
+<p class="sub">Účast v&nbsp;komunálních volbách v&nbsp;Česku. Zdroj: ČSÚ, zpracování DataTimes.</p>
+
+<h3>Jedno zjištění, víc kroků</h3>
+<p>Když je sdělení složité, nedávejte všechno do jednoho grafu. Rozložte ho do kroků, jako když vysvětlujete u&nbsp;tabule. Nejdřív celek, pak detail, pak výjimka. Na sociálních sítích to bude karusel (k&nbsp;tomu se dostaneme v&nbsp;kapitole 4), v&nbsp;článku dva nebo tři menší grafy po sobě.</p>
+
+<div class="warn">
+  <span class="tag">Pozor</span>
+  <p><strong>Různá zjednodušení odpovídají na různé otázky.</strong> „Kdo vyhrál komunální volby v&nbsp;Česku?“ má tři poctivé odpovědi: podle křesel vedou nezávislí se třemi čtvrtinami, podle voličů zastupují zhruba třetinu (36&nbsp;%), podle počtu obcí zase vychází něco jiného. Žádná z&nbsp;nich není lež. Lží by bylo vydávat jednu za tu jedinou.</p>
+</div>
+
+<div class="deep">
+  <span class="tag">Čtěte</span>
+  <p><a href="https://www.mahdalova-skop.cz/clanek/volby-cr-2026-10-19-komu-patri-cesko-po-komunalnich-volbach">Nezávislí mají na radnicích tři čtvrtiny křesel, zastupují ale jenom třetinu voličů</a> (DataTimes, 19. 10.). Tři způsoby, jak shrnout stejné volby, a&nbsp;proč každý odpovídá na jinou otázku. Sledujte, jak je každé zjednodušení v&nbsp;textu pojmenované.</p>
+</div>
+
+<section class="quiz" aria-labelledby="z3">
+  <span class="lbl">Zastávka 3 · tři otázky</span>
+  <h3 id="z3">Poctivý obraz?</h3>
+  <fieldset class="qq" data-answer="1">
+    <legend>Sloupcový graf ukazuje účast 46 % a&nbsp;48 %. Osa začíná na 45 %. Co je špatně?</legend>
+    <button>Nic, rozdíl je aspoň dobře vidět</button>
+    <button>Délka sloupců neodpovídá hodnotám. Rozdíl dvou bodů vypadá jako trojnásobek.</button>
+    <button>Chybí 3D efekt</button>
+    <p class="why">U&nbsp;sloupců a&nbsp;pruhů je délka hodnota, osa proto musí začínat na nule. <a href="#pravda">Co vypustit nesmíte</a>.</p>
+  </fieldset>
+  <fieldset class="qq" data-answer="0">
+    <legend>Účast dlouhodobě klesá, ale v&nbsp;posledních dvou volbách mírně vzrostla. Ukážete jen poslední dvoje volby s&nbsp;titulkem „Účast roste“. Je to v&nbsp;pořádku?</legend>
+    <button>Ne. Výběr období mění závěr, čtenář by z&nbsp;celé řady vyvodil něco jiného.</button>
+    <button>Ano, poslední data jsou nejdůležitější</button>
+    <button>Ano, když napíšu zdroj</button>
+    <p class="why">Zjednodušení nesmí změnit, co z&nbsp;grafu čtenář vyvodí. Poctivě: „Po letech poklesu účast mírně vzrostla.“ <a href="#pravda">Zpět</a>.</p>
+  </fieldset>
+  <fieldset class="qq" data-answer="2">
+    <legend>V&nbsp;sedmičlenném zastupitelstvu přibyla jedna žena. Jak to v&nbsp;grafu ukážete?</legend>
+    <button>Podíl žen v&nbsp;procentech, osa od 10 do 30 %</button>
+    <button>Vůbec, malé obce vynechám</button>
+    <button>Počty: sedm koleček, dříve jedno, nyní dvě barevné</button>
+    <p class="why">U&nbsp;malých čísel jsou počty srozumitelnější a&nbsp;poctivější než skákající procenta. <a href="#pravda">Nejistota</a>.</p>
+  </fieldset>
+  <p class="score" aria-live="polite"></p>
+</section>
+
+<!-- ============ 4 ============ -->
+<h2 id="popisky">4. Graf, který obstojí sám</h2>
+
+<p>Graf se bude sdílet bez článku. Někdo ho vyfotí, přepošle, dá na sociální síť. Musí proto nést všechno, co čtenář potřebuje, aby ho pochopil a&nbsp;nedošel k&nbsp;chybnému závěru. Projděte svůj graf tímhle seznamem. Odškrtané si pamatuje váš prohlížeč.</p>
+
+<ul class="tasks" data-store="ujep-k3-graf">
+  <li data-id="titulek"><input type="checkbox" aria-label="Hotovo"><span class="what">Titulek je zjištění</span><span class="how">Celá věta, která říká, co má čtenář vidět. Ne „Volební účast 2006–2026“.</span></li>
+  <li data-id="podtitulek"><input type="checkbox" aria-label="Hotovo"><span class="what">Podtitulek říká co, kde a&nbsp;v&nbsp;čem</span><span class="how">„Účast v&nbsp;okrsku 5 v&nbsp;Jirkově, v&nbsp;% zapsaných voličů“.</span></li>
+  <li data-id="primo"><input type="checkbox" aria-label="Hotovo"><span class="what">Popisky jsou přímo u&nbsp;dat</span><span class="how">Název u&nbsp;čáry nebo pruhu místo legendy, kterou musí oko hledat.</span></li>
+  <li data-id="osa"><input type="checkbox" aria-label="Hotovo"><span class="what">Osa sloupců a&nbsp;pruhů začíná na nule</span><span class="how">U&nbsp;spojnicového grafu, pokud ne, je to vidět.</span></li>
+  <li data-id="zvyrazneni"><input type="checkbox" aria-label="Hotovo"><span class="what">Zvýrazněná je jedna věc</span><span class="how">Vaše obec, váš okrsek, hlavní řada. Ostatní šedě.</span></li>
+  <li data-id="poznamka"><input type="checkbox" aria-label="Hotovo"><span class="what">Poznámka u&nbsp;všeho, co by mohlo zmást</span><span class="how">Změna hranic okrsku, chybějící rok, malá čísla.</span></li>
+  <li data-id="zdroj"><input type="checkbox" aria-label="Hotovo"><span class="what">Zdroj a&nbsp;datum</span><span class="how">„Zdroj: ČSÚ, volby.gov.cz, staženo 24. 10. 2026“ a&nbsp;vaše jméno jako autora grafu.</span></li>
+  <li data-id="mobil"><input type="checkbox" aria-label="Hotovo"><span class="what">Je to čitelné na mobilu</span><span class="how">Otevřete graf v&nbsp;telefonu. Přečtete popisky bez zvětšování?</span></li>
+</ul>
+
+<div class="tip">
+  <span class="tag">Nástroje</span>
+  <p>Pro první prototyp stačí <strong>Google Sheets</strong>. Na hotový graf doporučuji <strong><a href="https://www.datawrapper.de/">Datawrapper</a></strong>: je zdarma, umí české formáty čísel, přímé popisky i&nbsp;poznámky a&nbsp;graf se sám přizpůsobí mobilu. Inspiraci najdete v&nbsp;<a href="https://app.datawrapper.de/river">Datawrapper River</a>, kde autoři sdílejí své grafy k&nbsp;dalšímu použití. Nástroje a&nbsp;barvy podrobně probereme v&nbsp;kapitole 4.</p>
+</div>
+
+<!-- ============ 5 ============ -->
+<h2 id="skici">5. Úkol: Dvě skici stejného zjištění</h2>
+
+<div class="task">
+  <span class="tag">Úkol</span>
+  <p>Vezměte jedno zjištění z&nbsp;minula: účast ve vašem okrsku v&nbsp;čase, nebo ženy a&nbsp;muži ve vašem zastupitelstvu. Udělejte z&nbsp;něj <strong>dvě různé varianty grafu</strong> a&nbsp;jednu vyberte.</p>
+  <ol class="steps">
+    <li><strong>Napište větu.</strong> Hlavní sdělení, které má graf dokázat. Viz <a href="#veta">část 1</a>.</li>
+    <li><strong>Nakreslete obě skici rukou.</strong> Na papír, tužkou, za pět minut. Ruka vás nenechá ztratit se v&nbsp;nabídce nástroje a&nbsp;přemýšlíte o&nbsp;sdělení, ne o&nbsp;tlačítkách. Skici vyfoťte, patří do portfolia, i&nbsp;ta nevybraná.</li>
+    <li><strong>Varianty se musí lišit v&nbsp;něčem podstatném.</strong> Ne jen barvou. Třeba dvě čáry proti dvěma malým grafům, procenta proti počtům, celé období proti posledním třem volbám.</li>
+    <li><strong>Vyberte a&nbsp;zdůvodněte.</strong> Která varianta odpovídá na vaši otázku rychleji a&nbsp;správněji? Co jste vypustili a&nbsp;proč? Zůstaly vidět výjimky, měřítko a&nbsp;nejistota?</li>
+    <li><strong>Postavte prototyp</strong> vybrané varianty v&nbsp;nástroji, s&nbsp;titulkem, popisky a&nbsp;zdrojem podle <a href="#popisky">seznamu</a>.</li>
+  </ol>
+</div>
+
+<div class="warn">
+  <span class="tag">AI a&nbsp;kontrola</span>
+  <p>Jazykový model vám může navrhnout varianty grafu, titulky nebo srozumitelnější vysvětlení. Využijte to. Ale:</p>
+  <ul>
+    <li><strong>Graf musí stát na ověřených číslech</strong> z&nbsp;vaší tabulky, ne na obrázku, který model vygeneroval. Vygenerovaný „graf“ nemá s&nbsp;daty nic společného, i&nbsp;když tak vypadá.</li>
+    <li><strong>Každý navržený titulek zkontrolujte proti datům.</strong> Hladká formulace ani hezký obraz nedokazují, že je to pravda. Model rád přitvrdí: z&nbsp;„mírně vzrostla“ udělá „prudce stoupá“.</li>
+    <li>Co jste od modelu přijali, upravili nebo odmítli, zapište do záznamu práce s&nbsp;AI.</li>
+  </ul>
+</div>
+
+<div class="box">
+  <p><strong>Zpětná vazba jinému projektu.</strong> Po tomto bloku dáte věcnou zpětnou vazbu na prototyp jednoho spolužáka. Tři otázky: Co je z&nbsp;grafu doložené? Kde hrozí, že ho čtenář pochopí špatně? Jakou jednu konkrétní úpravu doporučujete?</p>
+</div>
+
+<!-- ============ úkoly ============ -->
+<h2 id="ukoly">Úkoly do příště</h2>
+<p>Všechno sdílejte v&nbsp;Moodle.</p>
+<ul class="tasks" data-store="ujep-k3-ukoly">
+  <li data-id="veta"><input type="checkbox" aria-label="Hotovo"><span class="what">Hlavní sdělení jednou větou</span><span class="how">K&nbsp;účasti v&nbsp;čase, nebo k&nbsp;ženám a&nbsp;mužům v&nbsp;zastupitelstvu. <a href="#veta">Část 1</a>.</span></li>
+  <li data-id="skici"><input type="checkbox" aria-label="Hotovo"><span class="what">Dvě skici stejného zjištění</span><span class="how">Fotky ručních skic, obě varianty, i&nbsp;ta nevybraná. <a href="#skici">Část 5</a>.</span></li>
+  <li data-id="zduvodneni"><input type="checkbox" aria-label="Hotovo"><span class="what">Zdůvodnění výběru</span><span class="how">Pár vět: proč tahle varianta, co jste vypustili a&nbsp;co jste naopak zachovali.</span></li>
+  <li data-id="prototyp"><input type="checkbox" aria-label="Hotovo"><span class="what">Prototyp grafu s&nbsp;titulkem a&nbsp;zdrojem</span><span class="how">Odkaz nebo obrázek. Prošlý <a href="#popisky">seznamem v&nbsp;části 4</a>.</span></li>
+  <li data-id="zpetna"><input type="checkbox" aria-label="Hotovo"><span class="what">Zpětná vazba jednomu spolužákovi</span><span class="how">Co je doložené, kde hrozí neporozumění, jedna konkrétní úprava.</span></li>
+  <li data-id="denik"><input type="checkbox" aria-label="Hotovo"><span class="what">Zápis do deníku rozhodnutí a&nbsp;záznam AI</span><span class="how">Co jste zkusili, co nefungovalo, co jste změnili a&nbsp;proč. Jaký model, k&nbsp;čemu, co jste přijali a&nbsp;odmítli.</span></li>
+  <li data-id="kvizy"><input type="checkbox" aria-label="Hotovo"><span class="what">Projít všechny zastávky</span><span class="how">Kde jste chybovali, vraťte se k&nbsp;textu.</span></li>
+</ul>
+
+<div class="tip">
+  <span class="tag">Pro nadšence</span>
+  <p>Alberto Cairo: <em>How Charts Lie</em> (W. W. Norton, 2019). Krátká a&nbsp;čtivá kniha o&nbsp;tom, jak grafy klamou, i&nbsp;když jsou čísla správně. Hodí se k&nbsp;části 3 i&nbsp;ke kapitole 4.</p>
+</div>
+
+<div class="pager">
+  <a href="../kapitola-2/index.html">← Kapitola 2</a>
+  <a href="../index.html">Osnova</a>
+</div>
+</main>
+
+<footer><div class="wrap">ujep.datatimes.cz · Datová žurnalistika · připravuje Kateřina Mahdalová, <a href="https://www.mahdalova-skop.cz/">DataTimes</a> · stránka není veřejně indexovaná</div></footer>
+<script src="../../assets/app.js"></script>
+</body>
+</html>

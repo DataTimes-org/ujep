@@ -174,6 +174,12 @@ input[type=text], input[type=number] { font-size: .95rem; padding: .4rem .5rem; 
 .steps > li { counter-increment: s; position: relative; padding-left: 2.6rem; margin: .9rem 0; }
 .steps > li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 1.9rem; height: 1.9rem; border-radius: 50%; background: var(--ink); color: #fff; font: 700 .95rem/1.9rem var(--sans); text-align: center; }
 
+/* Ukázkové grafy vedle sebe */
+.figs { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin: 1.2rem 0 .3rem; }
+.figs figure { margin: 0; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: .7rem .8rem; }
+.figs svg, .figs img { width: 100%; height: auto; display: block; font-family: var(--sans); }
+.figs figcaption { font: .88rem/1.4 var(--sans); color: var(--muted); margin-top: .3rem; }
+
 details { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: .6rem .9rem; margin: .8rem 0; }
 details summary { cursor: pointer; font: 600 .97rem var(--sans); }
 details[open] summary { margin-bottom: .5rem; }
