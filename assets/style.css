@@ -16,6 +16,7 @@
   --navy: #6267a3;
   --navy-tint: #eef0fa;
   --card: #ffffff;
+  --ink-blue: #101432;    /* brandNavy.9, titulky kapitol */
   --green: #639e0a;        /* brandForestGreen.5 */
   --green-tint: #eaf7d6;   /* brandForestGreen.0 */
   --green-ink: #3d5f06;    /* brandForestGreen.7 */
@@ -89,7 +90,7 @@ li { margin: .25rem 0; }
 .tile { display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.15rem; color: var(--ink); text-decoration: none; position: relative; min-height: 170px; }
 a.tile:hover { border-color: var(--brand); box-shadow: 0 4px 16px rgba(31,29,26,.08); color: var(--ink); }
 .tile .n { font: 700 2.4rem/1 var(--sans); color: var(--brand); margin-bottom: .4rem; }
-.tile h3 { margin: 0 0 .35rem; font-size: 1.1rem; }
+.tile h3 { margin: 0 0 .35rem; font-size: 1.1rem; color: var(--ink-blue); }
 .tile p { margin: 0; font-size: .95rem; color: var(--muted); }
 .tile .badge { position: absolute; top: 1rem; right: 1rem; }
 /* Stavy: proběhlo = béžová + zelený štítek, nyní = modrá, připravujeme = nejsvětlejší béžová */
@@ -101,7 +102,7 @@ a.tile.past:hover { border-color: var(--green); }
 a.tile.now:hover { border-color: var(--blue); }
 .tile.off { background: var(--paper); border-style: dashed; border-color: var(--line-strong); }
 .tile.off .n { color: var(--line-strong); }
-.tile.off h3, .tile.off p { color: var(--muted); }
+.tile.off p { color: var(--muted); }
 .badge { display: inline-block; font: 600 .72rem var(--sans); padding: .1rem .5rem; border-radius: 3px; }
 .badge.done { background: var(--green-tint); color: var(--green-ink); }
 .badge.next { background: var(--blue); color: #fff; }
