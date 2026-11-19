@@ -117,3 +117,12 @@ if (bar) {
   addEventListener('scroll', update, { passive: true });
   update();
 }
+
+// Rozbalit rámeček (details), na který míří odkaz s #kotvou
+const openTarget = () => {
+  const el = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+  const d = el && el.closest('details');
+  if (d) { d.open = true; el.scrollIntoView(); }
+};
+addEventListener('hashchange', openTarget);
+openTarget();

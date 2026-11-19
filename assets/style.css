@@ -185,6 +185,8 @@ input[type=text], input[type=number] { font-size: .95rem; padding: .4rem .5rem; 
 details { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: .6rem .9rem; margin: .8rem 0; }
 details summary { cursor: pointer; font: 600 .97rem var(--sans); }
 details[open] summary { margin-bottom: .5rem; }
+details.komb { border: 2px solid var(--ink); border-left-width: 8px; border-radius: 0; padding: .85rem 1.05rem; margin: 1.6rem 0; scroll-margin-top: 5rem; }
+details.komb summary { font-size: 1.05rem; }
 
 .pager { display: flex; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--line); font-family: var(--sans); }
 
