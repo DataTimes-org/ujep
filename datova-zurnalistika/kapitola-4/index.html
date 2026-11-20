@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Mapy: vrstvy, nástroje a chyby · Kapitola 4</title>
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/datatimes-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+<header class="top"><div class="wrap">
+  <a class="brand" href="../../index.html"><img class="ujep" src="../../assets/ujep-logo.svg" alt="UJEP"><span class="x">&amp;</span><img src="../../assets/datatimes-logo.png" alt="">DataTimes</a>
+  <nav>
+    <a href="../../index.html">Osnova</a>
+    <a href="../kapitola-1/index.html">Kapitola 1</a>
+    <a href="../kapitola-2/index.html">Kapitola 2</a>
+    <a href="../kapitola-3/index.html">Kapitola 3</a>
+    <a href="index.html" aria-current="page">Kapitola 4</a>
+    <a href="../kombinovane/index.html">Kombinované</a>
+  </nav>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <p class="crumbs"><a href="../../index.html">Datová žurnalistika</a> › Kapitola 4</p>
+  <p class="lbl">Kapitola 4 · pá 20. 11. 2026 · osobně s Michalem Škopem</p>
+  <h1>Mapy: vrstvy, nástroje a&nbsp;chyby</h1>
+  <p>Mapa není jen obarvené Česko ve Flourishi. Je to vrstva dat položená na místo: na obce, okrsky, terén, satelitní snímek. Dnes se podíváte, jaké druhy map existují, jak je skládat do vrstev, aby z&nbsp;nich bylo vidět, jak se kde žije, a&nbsp;jak mapy dělá Michal Škop. Tentokrát ne o&nbsp;volbách.</p>
+</div></section>
+
+<main class="wrap">
+
+<div class="key">
+  <span class="tag">Co si odnesete</span>
+  <ul>
+    <li>Umíte z&nbsp;dat ČSÚ za obce poskládat vrstvy, které ukážou, jak se kde žije.</li>
+    <li>Ke každé vrstvě vyberete způsob zobrazení: plošnou, bodovou nebo tečkovou mapu, kartogram, dvě mapy vedle sebe.</li>
+    <li>Na plošnou mapu dáváte podíly a&nbsp;přepočty, ne absolutní počty.</li>
+    <li>Znáte cesty od rychlé mapy ve Flourishi po Python, GIS, lidar a&nbsp;satelitní snímky.</li>
+    <li>Vyberete barevnou paletu podle dat a&nbsp;zkontrolujete mapu na mobilu a&nbsp;pro lidi s&nbsp;poruchou barvocitu.</li>
+  </ul>
+</div>
+
+<nav class="toc" aria-label="Obsah kapitoly">
+  <span class="lbl">Obsah</span>
+  <ol>
+    <li><a href="#vrstvy">Vrstvy: jak se kde žije</a></li>
+    <li><a href="#nastroje">Jak mapy vznikají: od Flourishe po lidar</a></li>
+    <li><a href="#most">Speciál: Krymský (Kerčský) most a&nbsp;co je mimo záběr</a></li>
+    <li><a href="#barvy">Barvy, přístupnost a&nbsp;chyby</a></li>
+    <li><a href="#mapa">Úkol: Kde je Česko nejstarší</a></li>
+    <li><a href="#ukoly">Úkoly do příště</a></li>
+  </ol>
+</nav>
+
+<div class="box">
+  <p><strong>Na semináři 20. 11.</strong> Osobně v&nbsp;Ústí nad Labem, jako host přijede dr. Michal Škop. Mějte s&nbsp;sebou notebook. Kdo programuje v&nbsp;Pythonu, může mapy stavět v&nbsp;něm, ostatní ve Flourishi.</p>
+</div>
+
+<!-- ============ 1 ============ -->
+<h2 id="vrstvy">1. Vrstvy: jak se kde žije</h2>
+
+<p>Na úvodní hodině jsme se dívali, jak se na mapách Česka opakuje stejný obrys. Exekuce, nižší vzdělání, nižší volební účast, chudoba: na mapě se znovu a&nbsp;znovu objeví bývalé Sudety, tedy pohraničí, odkud byli po válce vysídleni Němci a&nbsp;kam přišli noví obyvatelé bez vazby na místo. Jedna mapa je zajímavost. Několik vrstev přes sebe je už zjištění, které stojí za vysvětlení.</p>
+
+<p>Tak pracují i&nbsp;indexy kvality života. My jsme jeden takový skládali zhruba z&nbsp;dvaceti ukazatelů: dostupnost lékaře a&nbsp;školy, dojíždění, nezaměstnanost, exekuce, ovzduší, stáří obyvatel. Každý ukazatel je jedna vrstva. Dohromady říkají, <strong>jak se kde žije</strong>. Dnes si z&nbsp;nich vybereme několik a&nbsp;každou vrstvu zkusíme ukázat jiným způsobem.</p>
+
+<h3>Vrstvy, se kterými budeme pracovat</h3>
+<div class="table-wrap"><table>
+  <tr><th>Vrstva</th><th>Ukazatel</th><th>Odkud</th><th>Jak ji ukázat</th></tr>
+  <tr><td><strong>Stáří</strong></td><td>Index stáří (senioři 65+ na 100 dětí do 14 let), podíl seniorů, průměrný věk</td><td>ČSÚ, obce</td><td>Plošná mapa. U&nbsp;indexu stáří rozbíhavá paleta se středem 100.</td></tr>
+  <tr><td><strong>Kolik lidí kde žije</strong></td><td>Počet obyvatel obce</td><td>ČSÚ, <a href="https://csu.gov.cz/produkty/pocet-obyvatel-v-obcich">Počet obyvatel v&nbsp;obcích</a></td><td>Bodová mapa (kolečko podle počtu), tečková mapa, nebo kartogram</td></tr>
+  <tr><td><strong>Dluhy</strong></td><td>Podíl lidí v&nbsp;exekuci, exekuce dětí</td><td><a href="https://www.mapaexekuci.cz/">Mapa exekucí</a></td><td>Plošná mapa, postupná paleta</td></tr>
+  <tr><td><strong>Vzdělání</strong></td><td>Podíl lidí s&nbsp;vysokou školou, nebo bez maturity</td><td>ČSÚ, <a href="https://scitani.gov.cz/">Sčítání 2021</a></td><td>Plošná mapa, postupná paleta</td></tr>
+  <tr><td><strong>Stěhování</strong></td><td>Přírůstek stěhováním na 1&nbsp;000 obyvatel</td><td>ČSÚ, obce</td><td>Plošná mapa, rozbíhavá paleta se středem 0 (víc lidí se přistěhovalo, nebo odstěhovalo)</td></tr>
+</table></div>
+<p class="sub">Seznam není uzavřený. Když najdete jinou vrstvu za obce (lékaři, školy, dojíždění), přidejte ji.</p>
+
+<h3>Jak vrstvu ukázat: druhy map</h3>
+<p>Stejně jako jste v&nbsp;<a href="../kapitola-3/index.html#typ">kapitole 3</a> vybírali graf podle otázky, vybíráte i&nbsp;mapu. Každá vrstva z&nbsp;tabulky si říká o&nbsp;jiný druh. Rozklikněte si je:</p>
+
+<details>
+  <summary>Plošná mapa: kde je čeho víc v&nbsp;poměru?</summary>
+  <p>Každé území (obec, okres, kraj) je vybarvené podle hodnoty. Anglicky <em>choropleth</em>. Je to nejčastější mapa v&nbsp;novinách a&nbsp;Flourish ji nabízí jako první. Hodí se jen na <strong>podíly a&nbsp;přepočty</strong>: index stáří, podíl lidí v&nbsp;exekuci, podíl vysokoškoláků. Kdybyste vybarvili absolutní počty, mapa by ukázala hlavně to, kde žije hodně lidí.</p>
+</details>
+<details>
+  <summary>Bodová mapa: kde je čeho hodně v&nbsp;absolutních číslech?</summary>
+  <p>Na každém místě je kolečko, jehož plocha odpovídá počtu. Na absolutní čísla (počet obyvatel, počet seniorů, počet lidí v&nbsp;exekuci) je to správná volba. Pozor, aby plocha kolečka rostla s&nbsp;hodnotou, ne jeho průměr. Jinak dvojnásobek vypadá jako čtyřnásobek.</p>
+</details>
+<details>
+  <summary>Tečková mapa: jedna tečka, jeden člověk</summary>
+  <p>Každá tečka je jeden člověk (nebo deset, sto). Tečky se rozmístí uvnitř území, kde lidé žijí, a&nbsp;mapa tak ukáže hustotu osídlení i&nbsp;to, jak jsou skupiny obyvatel rozmístěné. Dvě barvy teček (třeba děti a&nbsp;senioři) ukážou obě vrstvy najednou. Známé jsou mapy etnicity podle sčítání lidu v&nbsp;USA a&nbsp;v&nbsp;Brazílii, kde je každý obyvatel barevnou tečkou podle toho, k&nbsp;jaké skupině se ve sčítání přihlásil. Je z&nbsp;nich vidět, jak jsou města rozdělená po čtvrtích.</p>
+  <p class="sub">Americké sčítání tuhle kategorii anglicky nazývá <em>race</em>. V&nbsp;češtině o&nbsp;ní mluvíme jako o&nbsp;<strong>etnicitě</strong>, pojem rasa je překonaný a&nbsp;nepoužíváme ho.</p>
+</details>
+<details>
+  <summary>Kartogram: když má být velikost podle lidí, ne podle rozlohy</summary>
+  <p>Území se překreslí tak, aby jeho velikost odpovídala počtu obyvatel nebo voličů, ne rozloze. Na běžné mapě výsledků prezidentských voleb v&nbsp;USA zabírají řídce osídlené státy uprostřed země obrovskou plochu jedné barvy. V&nbsp;kartogramu se scvrknou a&nbsp;vystoupí lidnaté pobřeží na východě a&nbsp;na západě. My jsme to dělali šestiúhelníky: každý představuje stejný počet lidí. V&nbsp;Česku by kartogram zmenšil řídce osídlené pohraničí a&nbsp;zvětšil města.</p>
+  <p class="sub">Pozor na dvojí význam: v&nbsp;tradiční české kartografii se slovem kartogram někdy myslí plošně vybarvená mapa. My ho používáme ve smyslu anglického <em>cartogram</em>, tedy mapy zdeformované podle velikosti populace.</p>
+</details>
+<details>
+  <summary>Dvě vrstvy najednou: vedle sebe, nebo jednou paletou</summary>
+  <p>Nejjednodušší je dát <strong>dvě stejně velké mapy vedle sebe</strong> se stejným výřezem: oko samo porovná, kde se obrys opakuje. Pokročilejší je <strong>dvojrozměrná paleta</strong>: jedna vrstva určuje odstín, druhá sytost, a&nbsp;legenda je čtverec 3&nbsp;×&nbsp;3. Je to silné, ale čtenář se ji musí naučit číst. Do článku pro širokou veřejnost proto spíš mapy vedle sebe.</p>
+</details>
+<details>
+  <summary>Terén, rastr, satelit: když jde o&nbsp;samotné místo</summary>
+  <p>Výškový model terénu, letecký nebo satelitní snímek. Nevybarvujete na nich úřední hranice, ale ukazujete, co na místě skutečně je: řeka, která se rozlila, les, který zmizel, most, který spadl (<a href="#most">část 3</a>). Pod vrstvy dat se hodí jako podklad: pohraničí kopíruje hory.</p>
+</details>
+
+<div class="warn">
+  <span class="tag">Pozor</span>
+  <p><strong>Malé obce skáčou.</strong> V&nbsp;obci se 40 obyvateli změní index stáří o&nbsp;desítky bodů, když se narodí jedno dítě. Na mapě taková obec svítí stejně výrazně jako město. Zvažte, jestli malé obce nesloučit do správních obvodů (ORP), nebo jejich nejistotu nezmínit v&nbsp;poznámce. Platí to, co jste se naučili u&nbsp;žen v&nbsp;malých zastupitelstvech (<a href="../kapitola-3/index.html#pravda">kapitola 3</a>).</p>
+  <p><strong>Shoda vrstev není příčina.</strong> Když se obrys exekucí a&nbsp;vzdělání překrývá, je to otázka, ne odpověď. Data za obce neříkají nic o&nbsp;jednotlivých lidech (<a href="../kapitola-1/index.html#souvislosti">kapitola 1</a>).</p>
+</div>
+
+<div class="deep">
+  <span class="tag">Čtěte</span>
+  <ul>
+    <li><a href="https://www.mahdalova-skop.cz/clanek/volby-rakousko-2024-11-27-kartogramy">Naše kartogramy oceňují i&nbsp;v&nbsp;Rakousku</a> (DataTimes, 27. 11. 2024). Klasická mapa USA a&nbsp;kartogram stejných výsledků vedle sebe.</li>
+    <li><a href="https://www.mahdalova-skop.cz/clanek/volby-usa-2026-11-04-proc-vyhrali-demokrate">Jak Trump prohrál republikánům Kongres</a> (DataTimes, 4. 11.). Letošní kartogram amerických voleb.</li>
+    <li><a href="https://www.mahdalova-skop.cz/clanek/kontext-2026-09-05-skutecna-velikost-sveta">Skutečná velikost světa: vyzkoušejte si, jak nás mapy klamou</a> (DataTimes, 5. 9.). Proč je Grónsko na mapě velké jako Afrika.</li>
+    <li><a href="https://www.mahdalova-skop.cz/specialy/cvut-gis-day-2026/">Volební noc (v&nbsp;Česku volební odpoledne)</a>. Michalova prezentace z&nbsp;letošního GIS Day na ČVUT: proč je Praha na jedné mapě tečka a&nbsp;na druhé kraj.</li>
+  </ul>
+</div>
+
+<section class="quiz" aria-labelledby="z1">
+  <span class="lbl">Zastávka 1 · tři otázky</span>
+  <h3 id="z1">Která mapa pro kterou vrstvu?</h3>
+  <fieldset class="qq" data-answer="1">
+    <legend>Máte počet seniorů v&nbsp;každé obci. Co dáte na plošně vybarvenou mapu?</legend>
+    <button>Absolutní počet seniorů</button>
+    <button>Podíl seniorů na obyvatelích, nebo index stáří</button>
+    <button>Počet domovů pro seniory</button>
+    <p class="why">Plošná mapa unese jen podíly a&nbsp;přepočty. Absolutní počty ukáže hlavně to, kde žije nejvíc lidí. Na ně se hodí bodová mapa. <a href="#vrstvy">Zpět</a>.</p>
+  </fieldset>
+  <fieldset class="qq" data-answer="2">
+    <legend>Index stáří v&nbsp;obci je 150. Co to znamená?</legend>
+    <button>Průměrný věk je 150 měsíců</button>
+    <button>V&nbsp;obci žije 150 seniorů</button>
+    <button>Na 100 dětí do 14 let tam připadá 150 lidí starších 65 let</button>
+    <p class="why">Index stáří = senioři (65+) na 100 dětí (0–14). <a href="#vrstvy">Zpět</a>.</p>
+  </fieldset>
+  <fieldset class="qq" data-answer="all">
+    <legend>Chcete ukázat, jestli se překrývá stáří obyvatel a&nbsp;exekuce. Jak? (Zkuste si nejdřív odpovědět sami.)</legend>
+    <button>Dvě stejně velké mapy vedle sebe</button>
+    <button>Jedna mapa s&nbsp;dvojrozměrnou paletou</button>
+    <button>Bodový graf obcí, a&nbsp;mapu až jako doplněk</button>
+    <div class="why">Správně jsou všechny tři. Mapy vedle sebe jsou nejsrozumitelnější, dvojrozměrná paleta úspornější, ale čtenář se ji musí naučit. Bodový graf ukáže vztah přesněji, mapa k&nbsp;němu přidá, kde ty obce leží. <a href="#vrstvy">Zpět</a>.</div>
+  </fieldset>
+  <p class="score" aria-live="polite"></p>
+</section>
+
+<section class="quiz" aria-labelledby="z2">
+  <span class="lbl">Zastávka 2 · tři otázky</span>
+  <h3 id="z2">Plocha, lidé a&nbsp;slova</h3>
+  <fieldset class="qq" data-answer="2">
+    <legend>Na mapě výsledků voleb v&nbsp;USA převažuje jedna barva. Znamená to, že ta strana vyhrála?</legend>
+    <button>Ano, má víc území</button>
+    <button>Ano, když je barva sytější</button>
+    <button>Nemusí. Velkou plochu zabírají řídce osídlené státy. Kartogram ukáže, kolik je za plochou lidí.</button>
+    <p class="why">Plocha není počet lidí. <a href="#vrstvy">Kartogram</a>.</p>
+  </fieldset>
+  <fieldset class="qq" data-answer="0">
+    <legend>Jak v&nbsp;češtině pojmenujete kategorii, kterou americké sčítání nazývá <em>race</em>?</legend>
+    <button>Etnicita</button>
+    <button>Rasa</button>
+    <button>Národnost</button>
+    <p class="why">Mluvíme o&nbsp;etnicitě. Pojem rasa je překonaný. Národnost je v&nbsp;českém sčítání samostatná otázka. <a href="#vrstvy">Tečková mapa</a>.</p>
+  </fieldset>
+  <fieldset class="qq" data-answer="all">
+    <legend>Jak zacházet s&nbsp;obcí o&nbsp;40 obyvatelích, která na mapě indexu stáří svítí nejtmavší barvou? (Zkuste si nejdřív odpovědět sami.)</legend>
+    <button>Podívat se na počty, ne jen na index</button>
+    <button>Zvážit sloučení malých obcí do větších celků</button>
+    <button>Napsat k&nbsp;mapě poznámku o&nbsp;malých číslech</button>
+    <div class="why">Správně jsou všechny tři. Počty ukážou, o&nbsp;kolik lidí jde, sloučení ubere náhodné výkyvy a&nbsp;poznámka upozorní čtenáře. <a href="#vrstvy">Zpět</a>.</div>
+  </fieldset>
+  <p class="score" aria-live="polite"></p>
+</section>
+
+<!-- ============ 2 ============ -->
+<h2 id="nastroje">2. Jak mapy vznikají: od Flourishe po lidar</h2>
+
+<p>Mapu jde udělat mnoha cestami. Vybírá se podle toho, jak rychle ji potřebujete, kolik dat máte a&nbsp;co přesně má ukázat.</p>
+
+<div class="table-wrap"><table>
+  <tr><th>Nástroj</th><th>Na co je dobrý</th><th>Kde narazíte</th></tr>
+  <tr><td><strong>Flourish, Datawrapper</strong></td><td>Plošná a&nbsp;bodová mapa za půl hodiny, rovnou interaktivní a&nbsp;čitelná na mobilu.</td><td>Potřebují hotové hranice (GeoJSON) a&nbsp;tabulku se stejnými kódy území. Složitější vrstvy neumí.</td></tr>
+  <tr><td><strong>Python</strong> (geopandas, matplotlib, plotly)</td><td>Tisíce obcí, víc vrstev, opakovatelný postup, mapová videa po snímcích.</td><td>Musíte si pohlídat projekci, barvy a&nbsp;popisky sami.</td></tr>
+  <tr><td><strong>QGIS</strong></td><td>Plnohodnotný GIS zdarma: vrstvy, kreslení a&nbsp;oprava hranic, rastry, výškový model.</td><td>Delší učení. Výstup je obrázek, interaktivitu musíte řešit jinde.</td></tr>
+</table></div>
+
+<h3>Co ukáže Michal Škop</h3>
+<ul>
+  <li><strong>Hranice, které nikde nejsou.</strong> Obce a&nbsp;kraje si stáhnete hotové. Volební okrsky se ale mění a&nbsp;jejich hranice se často musí poskládat z&nbsp;adres nebo dokreslit ručně. Jedno území může mít víc kusů, třeba obec s&nbsp;exklávou nebo ostrovy. Takovému tvaru se říká multipolygon, a&nbsp;když se rozpadne, ve Flourishi pak část území chybí.</li>
+  <li><strong>Mapová videa.</strong> Mapa, která se v&nbsp;čase mění, jako průběh sčítání ve volební noci. Vzniká jako série obrázků, z&nbsp;nichž se poskládá video pro sociální sítě.</li>
+  <li><strong>Lidar a&nbsp;orientační mapy.</strong> Laserové skenování povrchu Česka od Českého úřadu zeměměřického a&nbsp;katastrálního (ČÚZK) je volně dostupné. Z&nbsp;mračna bodů se dá automaticky vyrobit orientační mapa (například programem Karttapullautin): ne závodní, ale pro trénink použitelná, klidně pro celou republiku.</li>
+  <li><strong>Satelitní snímky.</strong> Evropský program Copernicus zdarma zveřejňuje snímky družic Sentinel-2. Stejné místo vyfotí zhruba každé dva až tři dny, s&nbsp;rozlišením 10 metrů. Háček: když je zataženo, na snímku jsou jen mraky. Viz <a href="#most">část 3</a>.</li>
+</ul>
+
+<div class="tip">
+  <span class="tag">Zdroje podkladů</span>
+  <ul>
+    <li><a href="https://ags.cuzk.gov.cz/geoprohlizec/">Geoprohlížeč ČÚZK</a>: ortofoto, výškopis, katastr, hranice. Data ke stažení najdete na <a href="https://geoportal.cuzk.gov.cz/">Geoportálu ČÚZK</a>.</li>
+    <li><a href="https://browser.dataspace.copernicus.eu/">Copernicus Browser</a>: satelitní snímky Sentinel podle data a&nbsp;oblačnosti.</li>
+    <li><a href="../kapitola-3/index.html#data">Hranice krajů ke stažení</a> jste dostali minule. Hranice obcí přidáme k&nbsp;úkolu níž.</li>
+  </ul>
+</div>
+
+<!-- ============ 4 ============ -->
+<h2 id="most">3. Speciál: Krymský (Kerčský) most a&nbsp;co je mimo záběr</h2>
+
+<div class="deep">
+  <span class="tag">Speciál</span>
+  <p><strong>Co se stalo.</strong> Ukrajina 17. listopadu zasáhla Krymský (Kerčský) most, který spojuje Rusko s&nbsp;okupovaným Krymem. Prezident Volodymyr Zelenskyj na síti X zveřejnil video s&nbsp;letem střely a&nbsp;výbuchem a&nbsp;mluvil o&nbsp;výsledku několikatýdenní operace a&nbsp;odvetě za ruské útoky na ukrajinskou infrastrukturu. Podle ukrajinského generálního štábu se zřítil oblouk a&nbsp;pole silniční části mostu, železniční část zůstala stát s&nbsp;poškozeným obloukem (<a href="https://ct24.ceskatelevize.cz/clanek/svet/rusky-balisticky-utok-v-kyjeve-zasahl-dva-mosty-379678">ČT24</a>). Rusko útok označilo za teroristický čin, rozsah škod ale neupřesnilo a&nbsp;mluví o&nbsp;menším poškození. Ve čtvrtek 19.&nbsp;11. Ukrajina na most zaútočila znovu a&nbsp;železniční doprava se zastavila (<a href="https://www.irozhlas.cz/zpravy-svet/krymsky-most-aktualne-dnes-utok-2026-ukrajina-rusko-online-valka_2611190612_ako">Český rozhlas</a>).</p>
+  <p><strong>Proč je most důležitý.</strong> Měří 19 kilometrů, je nejdelší v&nbsp;Evropě a&nbsp;Rusko ho postavilo po anexi Krymu. Otevřel ho Vladimir Putin v&nbsp;roce 2018. Je hlavní zásobovací cestou na Krym a&nbsp;zároveň symbolem okupace. Ukrajina na něj útočila už v&nbsp;roce 2022, 2023 a&nbsp;2025.</p>
+  <p><strong>Komu věřit, když obě strany válčí i&nbsp;obrazem.</strong></p>
+  <ul>
+    <li><strong>Ukrajinská strana</strong> má zájem úder ukázat co nejúspěšnější. Video z&nbsp;útoku dokládá, že útok byl, ale ne rozsah škod.</li>
+    <li><strong>Ruská strana</strong> má zájem škody zmenšit. Podle serveru <a href="https://www.twz.com/news-features/kerch-bridge-struck-for-the-second-time-in-less-than-24-hours-russia">The War Zone</a> ruská televize nejdřív odvysílala záběry s&nbsp;viditelným poškozením a&nbsp;ty pak zmizely. Záběry od ruských úřadů podle něj ukazují jen neporušený oblouk železničního mostu a&nbsp;poškozenou část vynechávají. U&nbsp;každého záběru se proto ptejte: <em>Co je mimo záběr? Odkud se točí? Proč právě odtud?</em></li>
+    <li><strong>Falešná videa</strong> se objevila hned. France 24 ověřovala videa vytvořená umělou inteligencí, která ukazují most zničený mnohem víc, než skutečně je (<a href="https://www.france24.com/en/tv-shows/truth-or-fake/20261118-crimea-bridge-strike-fact-checking-fake-videos-of-damage-after-ukraine-s-attack">France 24, Truth or Fake</a>). Přehánět se dá oběma směry.</li>
+    <li><strong>Nezávislý pohled</strong> nabízí satelit. Michal čeká na snímek z&nbsp;družice Sentinel-2, která místo vyfotí každý druhý nebo třetí den. Zatím bylo pokaždé zataženo. Až snímek bude, porovnáme ho se snímkem před útokem.</li>
+  </ul>
+  <p>Tak vypadá novinářská práce s&nbsp;mapou a&nbsp;obrazem ve válce: nevěřit žádné straně automaticky, hledat zdroj, který nemá zájem na výsledku, a&nbsp;čtenáři poctivě říct, co ověřené je a&nbsp;co zatím ne.</p>
+</div>
+
+<section class="quiz" aria-labelledby="z3">
+  <span class="lbl">Zastávka 3 · tři otázky</span>
+  <h3 id="z3">Ověříte obraz?</h3>
+  <fieldset class="qq" data-answer="2">
+    <legend>Ruská televize ukazuje most z&nbsp;úhlu, kde je všechno v&nbsp;pořádku. Co z&nbsp;toho plyne?</legend>
+    <button>Most poškozený není</button>
+    <button>Ukrajina lže</button>
+    <button>Záběr dokládá jen to, co je v&nbsp;něm. O&nbsp;tom, co je mimo záběr, neříká nic.</button>
+    <p class="why">Výběr záběru je rozhodnutí. Ptejte se, co v&nbsp;něm chybí. <a href="#most">Zpět</a>.</p>
+  </fieldset>
+  <fieldset class="qq" data-answer="1">
+    <legend>Proč je satelitní snímek pro ověření škod cenný?</legend>
+    <button>Protože je vždycky ostrý</button>
+    <button>Protože ho pořizuje někdo, kdo nemá zájem škody zvětšit ani zmenšit, a&nbsp;dá se porovnat se snímkem před útokem</button>
+    <button>Protože ho vyrobí umělá inteligence</button>
+    <p class="why">Nezávislý zdroj a&nbsp;srovnání před a&nbsp;po. Jen musí být jasno, bez mraků. <a href="#most">Zpět</a>.</p>
+  </fieldset>
+  <fieldset class="qq" data-answer="all">
+    <legend>Na sociálních sítích koluje video zříceného mostu. Co ověříte? (Zkuste si nejdřív odpovědět sami.)</legend>
+    <button>Kdo video zveřejnil první a&nbsp;kdy</button>
+    <button>Jestli místo sedí s&nbsp;mapou a&nbsp;satelitním snímkem</button>
+    <button>Jestli nejde o&nbsp;video vytvořené umělou inteligencí nebo o&nbsp;starý záběr</button>
+    <div class="why">Správně jsou všechny tři. Původ, místo a&nbsp;pravost. Falešná videa přeháněla škody, oficiální záběry je zmenšovaly. <a href="#most">Zpět</a>.</div>
+  </fieldset>
+  <p class="score" aria-live="polite"></p>
+</section>
+
+<!-- ============ 5 ============ -->
+<h2 id="barvy">4. Barvy, přístupnost a&nbsp;chyby</h2>
+
+<h3>Paleta podle dat</h3>
+<ul>
+  <li><strong>Postupná (sekvenční) paleta</strong>: jedna barva od světlé po tmavou. Pro hodnoty, které jen rostou: podíl seniorů, účast. Tmavší = víc.</li>
+  <li><strong>Rozbíhavá (divergentní) paleta</strong>: dvě barvy, mezi nimi neutrální střed. Jen když má střed význam: index stáří 100 (stejně seniorů jako dětí), celostátní průměr, nulová změna.</li>
+  <li><strong>Kategorie</strong> (vítězná strana, typ obce): odlišné barvy, ale co nejméně. Pět se ještě dá rozlišit, dvanáct ne.</li>
+</ul>
+<p>Duha (červená, žlutá, zelená, modrá) se na hodnoty nehodí: oko v&nbsp;ní nevidí pořadí a&nbsp;žlutá vytvoří hranice tam, kde v&nbsp;datech žádné nejsou.</p>
+
+<h3>Třídy rozhodují o&nbsp;tom, co čtenář uvidí</h3>
+<p>Plošná mapa obvykle dělí hodnoty do pěti až sedmi tříd. Kde hranice tříd položíte, tam vzniknou na mapě ostré přechody. Stejná data s&nbsp;jinými hranicemi mohou ukázat „rudé pohraničí“, nebo skoro jednolitou mapu. Hranice volte podle dat a&nbsp;smysluplných čísel (100 u&nbsp;indexu stáří, celostátní průměr), ne podle toho, co chcete ukázat.</p>
+
+<h3>Přístupnost a&nbsp;mobil</h3>
+<p>Zhruba každý dvanáctý muž rozlišuje barvy hůř, nejčastěji červenou a&nbsp;zelenou. Paletu proto zkontrolujte v&nbsp;simulátoru barvocitu (Flourish i&nbsp;Datawrapper mají kontrolu barev) a&nbsp;nespoléhejte jen na barvu: přidejte popisky nejdůležitějších míst. Mapa celé republiky má na mobilu šířku pár centimetrů. Obec v&nbsp;ní nenajdete, pokud nepřidáte vyhledávání nebo přiblížení.</p>
+
+<h3>Chyby, které jsme viděli ve vašich článcích o&nbsp;hospitalizacích</h3>
+<ul>
+  <li><strong>Absolutní čísla vybarvená na mapě.</strong> Že má Moravskoslezský kraj nejvíc hospitalizací místních, říká hlavně to, že je lidnatý. Na plošnou mapu patří podíl.</li>
+  <li><strong>Případy, nebo lidé?</strong> Tabulka ÚZIS počítá <em>případy hospitalizace</em>. Jeden člověk může být v&nbsp;nemocnici za rok třikrát. „2,4 milionu obyvatel bylo hospitalizováno“ proto není pravda, správně je „2,4 milionu hospitalizací“.</li>
+  <li><strong>Jiný rok, jiná čísla.</strong> Data k&nbsp;úkolu byla za rok 2019. Kdo vzal jinou tabulku, měl jiná čísla. Rok patří do titulku i&nbsp;do zdroje.</li>
+  <li><strong>Domněnka jako fakt.</strong> „Lidé věří svým lokálním nemocnicím“ nebo „za vysokým číslem jsou otravy z&nbsp;vinných sklípků“ tabulka nedokládá. Domněnku jasně označte a&nbsp;zeptejte se odborníka. Několik z&nbsp;vás to udělalo správně: napsali, že z&nbsp;tabulky nelze poznat, proč lidé do Prahy jezdí, a&nbsp;koho se zeptat.</li>
+  <li><strong>Tabulka a&nbsp;graf nesedí.</strong> Než graf zveřejníte, porovnejte ho číslo po čísle s&nbsp;tabulkou, ze které vznikl.</li>
+</ul>
+
+<h3>Kontrolní seznam pro mapu</h3>
+<ul class="tasks" data-store="ujep-k4-mapa">
+  <li data-id="otazka"><input type="checkbox" aria-label="Hotovo"><span class="what">Mapa odpovídá na otázku „kde“</span><span class="how">Když jde jen o&nbsp;srovnání, je čitelnější pruhový graf.</span></li>
+  <li data-id="podil"><input type="checkbox" aria-label="Hotovo"><span class="what">Na plošné mapě je podíl nebo přepočet</span><span class="how">Absolutní počty patří na bodovou mapu.</span></li>
+  <li data-id="paleta"><input type="checkbox" aria-label="Hotovo"><span class="what">Paleta odpovídá datům</span><span class="how">Postupná pro rostoucí hodnoty, rozbíhavá jen se smysluplným středem. Žádná duha.</span></li>
+  <li data-id="tridy"><input type="checkbox" aria-label="Hotovo"><span class="what">Hranice tříd mají smysl</span><span class="how">Kulatá čísla, průměr, hodnota 100. Legenda je ukazuje.</span></li>
+  <li data-id="male"><input type="checkbox" aria-label="Hotovo"><span class="what">Malé obce nepřehlušují zbytek</span><span class="how">Počty v&nbsp;popisku, sloučení, nebo poznámka.</span></li>
+  <li data-id="barvocit"><input type="checkbox" aria-label="Hotovo"><span class="what">Zkontrolováno v&nbsp;simulátoru barvocitu</span><span class="how">A&nbsp;nejdůležitější místa jsou popsaná, ne jen obarvená.</span></li>
+  <li data-id="mobil"><input type="checkbox" aria-label="Hotovo"><span class="what">Čitelné na mobilu</span><span class="how">Dá se najít vlastní obec? Přečtete legendu bez zvětšování?</span></li>
+  <li data-id="zdroj"><input type="checkbox" aria-label="Hotovo"><span class="what">Titulek-zjištění, rok, zdroj, autor</span><span class="how">Stejně jako u&nbsp;grafu v&nbsp;<a href="../kapitola-3/index.html#popisky">kapitole 3</a>.</span></li>
+</ul>
+
+<!-- ============ 6 ============ -->
+<h2 id="mapa">5. Úkol: Kde je Česko nejstarší</h2>
+
+<div class="task">
+  <span class="tag">Úkol</span>
+  <p>Udělejte mapu <strong>indexu stáří v&nbsp;obcích</strong> (senioři 65+ na 100 dětí do 14 let) za celé Česko, nebo za Ústecký kraj. Ve Flourishi, nebo v&nbsp;Pythonu, jak chcete.</p>
+  <ol class="steps">
+    <li><strong>Stáhněte data.</strong> ČSÚ, <a href="https://csu.gov.cz/produkty/vekove-slozeni-obyvatelstva">Věkové složení obyvatelstva</a>: počty obyvatel podle věkových skupin v&nbsp;obcích k&nbsp;31. 12. 2025. Potřebujete kód obce, děti 0–14 a&nbsp;seniory 65+.</li>
+    <li><strong>Spočítejte index</strong>: <code>=senioři/děti*100</code>. Ponechte si i&nbsp;počty, budete je potřebovat do popisku.</li>
+    <li><strong>Napište tvrzení</strong> dřív, než mapu obarvíte. Co má čtenář na mapě vidět?</li>
+    <li><strong>Postavte mapu.</strong> Kód obce propojí tabulku s&nbsp;hranicemi. Zvolte paletu a&nbsp;hranice tříd podle <a href="#barvy">části 4</a>.</li>
+    <li><strong>Přidejte druhou vrstvu</strong>, pokud stihnete: exekuce, účast, průměrný věk. Kreslí se znovu stejný obrys? Kde ne?</li>
+    <li><strong>Projděte <a href="#barvy">kontrolní seznam</a></strong> a&nbsp;mapu otevřete v&nbsp;telefonu.</li>
+  </ol>
+  <p class="sub">Hranice obcí ke stažení doplníme před seminářem.</p>
+</div>
+
+<div class="warn">
+  <span class="tag">AI a&nbsp;kontrola</span>
+  <p>Jazykový model vám pomůže s&nbsp;kódem v&nbsp;Pythonu nebo se spojením tabulek. Čísla ale berte z&nbsp;tabulky ČSÚ, ne z&nbsp;odpovědi modelu. Zkontrolujte namátkou tři obce: sedí počet dětí a&nbsp;seniorů s&nbsp;ČSÚ? Sedí index? A&nbsp;nezapomeňte na záznam práce s&nbsp;AI.</p>
+</div>
+
+<!-- ============ úkoly ============ -->
+<h2 id="ukoly">Úkoly do příště</h2>
+<p>Hotové mějte do dalšího bloku. Všechno vkládejte do svého tabu ve sdíleném dokumentu.</p>
+<ul class="tasks" data-store="ujep-k4-ukoly">
+  <li data-id="tvrzeni"><input type="checkbox" aria-label="Hotovo"><span class="what">Tvrzení k&nbsp;mapě jednou větou</span><span class="how">Co má čtenář na mapě vidět. <a href="#mapa">Část 5</a>.</span></li>
+  <li data-id="mapa"><input type="checkbox" aria-label="Hotovo"><span class="what">Mapa indexu stáří</span><span class="how">Odkaz nebo obrázek, prošlá <a href="#barvy">kontrolním seznamem</a>.</span></li>
+  <li data-id="vrstva"><input type="checkbox" aria-label="Hotovo"><span class="what">Druhá vrstva a&nbsp;co jste v&nbsp;ní našli</span><span class="how">Pár vět: kde se obrys opakuje a&nbsp;kde ne. Bez tvrzení o&nbsp;příčinách, která data nedokládají.</span></li>
+  <li data-id="oprava"><input type="checkbox" aria-label="Hotovo"><span class="what">Oprava článku o&nbsp;hospitalizacích</span><span class="how">Projděte svůj článek podle <a href="#barvy">chyb v&nbsp;části 4</a> a&nbsp;opravte, co nesedí.</span></li>
+  <li data-id="denik"><input type="checkbox" aria-label="Hotovo"><span class="what">Zápis do deníku rozhodnutí a&nbsp;záznam AI</span><span class="how">Proč tahle paleta a&nbsp;tyhle třídy, co jste zkusili a&nbsp;zahodili.</span></li>
+  <li data-id="kvizy"><input type="checkbox" aria-label="Hotovo"><span class="what">Projít všechny zastávky</span><span class="how">Kde jste chybovali, vraťte se k&nbsp;textu.</span></li>
+</ul>
+
+<details class="komb" id="kombinovane">
+  <summary>Úkoly pro kombinované studium</summary>
+  <p><strong>Úkol 4</strong> zveřejníme po přednášce 20.&nbsp;11. Vypracujete ho do podzáložky 4 ve svém tabu ve <a href="https://docs.google.com/document/d/1703SvQGwA_kmcyU5F6ka8LKkZ_LxSCmZleSrb0bHqHY/edit?tab=t.48znoq6bem8n" target="_blank" rel="noopener">sdíleném Google dokumentu</a>.</p>
+  <p class="sub">Přehled úkolů ze všech kapitol najdete na stránce <a href="../kombinovane/index.html">Kombinované</a>.</p>
+</details>
+
+<div class="tip">
+  <span class="tag">Pro nadšence</span>
+  <ul>
+    <li>Kenneth Field: <em>Thematic Mapping: 101 Inspiring Ways to Visualise Empirical Data</em> (Esri Press, 2022). Sto jedna způsobů, jak ukázat stejná data na mapě, a&nbsp;kdy který použít.</li>
+    <li>Mark Monmonier: <em>How to Lie with Maps</em> (University of Chicago Press, 3. vydání 2018). Klasika o&nbsp;tom, jak mapy klamou, i&nbsp;když jsou data správně.</li>
+  </ul>
+</div>
+
+<div class="pager">
+  <a href="../kapitola-3/index.html">← Kapitola 3</a>
+  <a href="../../index.html">Osnova</a>
+</div>
+</main>
+
+<footer><div class="wrap">ujep.datatimes.cz · Datová žurnalistika · připravuje Kateřina Mahdalová, <a href="https://www.mahdalova-skop.cz/">DataTimes</a> · stránka není veřejně indexovaná</div></footer>
+<script src="../../assets/app.js"></script>
+</body>
+</html>
